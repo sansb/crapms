@@ -1,0 +1,22 @@
+# This is a list of "configs"
+# Configs have a type and a command
+# Type can be copy-files or remote-command
+- type: remote-command
+  command: resolvconf -u
+
+- type: copy-files
+  source: ./hello-world/src/
+  destination: /srv/hello-world/
+
+- type: remote-command
+  command: apt-get update
+
+- type: remote-command
+  command: apt-get -y install nginx
+
+- type: copy-files
+  source: ./hello-world/nginx/sites-available/
+  destination: /etc/nginx/sites-available/
+
+- type: remote-command
+  command: service nginx restart
